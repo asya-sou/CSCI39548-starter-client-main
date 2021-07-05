@@ -2,8 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchAllStudentsThunk } from "../../store/thunks";
-import { AllStudentsView } from "../views";
-
+import AllStudentsView from "../views/AllStudentsView";
 class AllStudentsContainer extends Component {
   componentDidMount() {
     console.log(this.props);
