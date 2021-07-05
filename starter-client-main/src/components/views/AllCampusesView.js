@@ -8,6 +8,10 @@ const AllCampusesView = (props) => {
     return <div>There are no campuses.</div>;
   }
 
+  /* handleDelete = (e) => {
+    this.deleteCampus();
+  } */
+
   return (
     <div>
       {props.allCampuses.map((campus) => (
