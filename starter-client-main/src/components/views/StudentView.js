@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { Button } from "@material-ui/core";
 
 const StudentView = (props) => {
   const {student} = props;
@@ -14,6 +14,16 @@ const StudentView = (props) => {
       <p>Campus: {student.campusId ? <Link to={`/campus/${student.campusId}`}> {student.campus.name} </Link> : "Student is not currently enrolled" }</p>
       <p>Email: {student.email}</p>
       <p>GPA: {student.gpa}</p>
+      <Link to={'/'} >
+            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+              HOME
+            </Button>
+      </Link> 
+      <Link to={'/students'} >
+            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+              ALL STUDENTS
+            </Button>
+      </Link> 
     </div>
   );
 

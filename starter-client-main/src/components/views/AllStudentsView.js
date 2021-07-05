@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 const AllStudentsView = (props) => {
+
   if (!props.allStudents.length) {
     return <div>There are no students.</div>;
   }
@@ -15,6 +17,11 @@ const AllStudentsView = (props) => {
           </Link>
         </div>
       ))}
+      <Link to={'/'} >
+            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+              HOME
+            </Button>
+      </Link> 
     </div>
   );
 };

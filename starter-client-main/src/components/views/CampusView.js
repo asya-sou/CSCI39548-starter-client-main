@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { Button } from "@material-ui/core";
 
 const CampusView = (props) => {
   const {campus} = props;
@@ -23,6 +23,16 @@ const CampusView = (props) => {
         return (<li> <Link to={`/student/${student.id}`}>{name}</Link> </li> );
       })}
       </ul>
+      <Link to={'/'} >
+            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+              HOME
+            </Button>
+      </Link> 
+      <Link to={'/campuses'} >
+            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+              ALL CAMPUSES
+            </Button>
+      </Link> 
     </div>
   );
 
