@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import { VscError } from "react-icons/vsc";
+
 const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
     return <div>There are no campuses.</div>;
