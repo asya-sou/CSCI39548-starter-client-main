@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const CampusView = (props) => {
@@ -18,8 +19,8 @@ const CampusView = (props) => {
       <ul>
       { !campus.students.length ? "No students are enrolled at this time" :
         campus.students.map(  student => {
-        let name = student.firstname + " " + student.lastname;
-        return ( <li key={student.id}>{name}</li>);
+        let name = student.firstName + " " + student.lastName;
+        return (<li> <Link to={`/student/${student.id}`}>{name}</Link> </li> );
       })}
       </ul>
     </div>
