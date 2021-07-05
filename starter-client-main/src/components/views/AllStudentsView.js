@@ -12,17 +12,29 @@ const AllStudentsView = (props) => {
   return (
     <div>
       {props.allStudents.map((student) => (
-        <div key={student.id}>
-          <Link to={`/student/${student.id}`}>
-            <h1>{student.lastName}, {student.firstName}</h1>
-          </Link>
-        </div>
+        <tr>
+          <div key={student.id}>
+
+          <td>
+            <Link to={`/student/${student.id}`}>
+              <h1>{student.lastName}, {student.firstName}</h1>
+            </Link> 
+          </td>
+
+          <td>
+            <VscError color ='indigo'  />
+          </td>
+
+          </div>
+        </tr>
       ))}
       <Link to={'/'} >
             <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
               HOME
             </Button>
       </Link> 
+
+     
     </div>
   );
 };

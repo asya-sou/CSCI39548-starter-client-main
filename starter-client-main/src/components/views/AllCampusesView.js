@@ -16,10 +16,15 @@ const AllCampusesView = (props) => {
           <td><img src={campus.imageUrl} width="150" alt="Campus"/></td>
           <td><Link to={`/campus/${campus.id}`}>
             <h1>{campus.name}</h1>
-          </Link></td>
-        </tr>
+          </Link>
+          </td>
          {/*  <p>{campus.description}</p> */}
-        </div>
+         <td>
+            <VscError color ='indigo'  />
+          </td>
+          </tr>
+          </div>
+        
       ))}
       <Link to={'/'} >
             <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
