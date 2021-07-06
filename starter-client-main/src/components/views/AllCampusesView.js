@@ -26,13 +26,18 @@ const AllCampusesView = (props) => {
             </Link>
             </td>
             <td>
+            {/******************************************ATTEMPT AT DELETE BUTTON***************************************************/}
               <VscError 
               key={campus.id} 
               style ={{color: 'indigo', cursor: 'pointer', width: '50'}} 
               onClick={() => props.allCampuses.deleteCamp(campus.id)} />
+              {/* onClick={() => deleteCamp(campus.id)} */}
+              {/* onClick={() => this.props.deleteCamp(campus.id)} */}
+              {/* onClick={() => this.deleteCamp(campus.id)} */}
               {/* onClick={() => deleteCampusThunk(campus.id)} */}
               {/* onClick={() => this.props.deleteCampusThunk(campus.id)} */}
               {/* onClick={() => props.allCampus.deleteCampusThunk(campus.id)} */}
+              {/* onClick={() => this.allCampus.deleteCampusThunk(campus.id)} */}
             </td>
         </tr>        
       ))}
