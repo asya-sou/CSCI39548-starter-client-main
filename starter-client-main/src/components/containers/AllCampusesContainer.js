@@ -11,10 +11,22 @@ class AllCampusesContainer extends Component {
     this.props.fetchAllCampuses();
   }
 
+  deleteCamp(id) {
+    console.log({id});
+    this.props.deleteCampusThunk(id);
+  }
+ /*   deleteCamp = (dispatch) => {
+    return{
+      //getting campus ID from url
+    deleteCampus: () => dispatch(deleteCampusThunk())
+    };
+}; */
+
   render() {
     return (
       <AllCampusesView
         allCampuses={this.props.allCampuses}
+        deleteCamp={this.deleteCamp}
       />
     );
   }
@@ -34,16 +46,19 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-const deleteCamp = (dispatch) => {
+const mapDelete = (dispatch) => {
   return {
     deleteCampus: () => dispatch(deleteCampusThunk()),
   };
 };
 
+
+
 // Type check props;
 AllCampusesContainer.propTypes = {
   allCampuses: PropTypes.array.isRequired,
   fetchAllCampuses: PropTypes.func.isRequired,
+  deleteCampus: PropTypes.func.isRequired,
 };
 
 // Export our store-connected container by default;

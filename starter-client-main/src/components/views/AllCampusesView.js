@@ -2,14 +2,16 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { VscError } from "react-icons/vsc";
+import { deleteCampusThunk } from "../../store/thunks";
+import { deleteCampus } from "../../store/actions/actionCreators";
 
 const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
     return <div>There are no campuses.</div>;
   }
 
-  /* handleDelete = (e) => {
-    this.deleteCampus();
+/* const handleDelete = (e) => {
+   this.props.deleteCamp(e);
   } */
 
   return (
@@ -23,9 +25,14 @@ const AllCampusesView = (props) => {
               <h1>{campus.name}</h1>
             </Link>
             </td>
-          {/*  <p>{campus.description}</p> */}
-          <td >
-              <VscError style ={{color: 'indigo', cursor: 'pointer', width: '50'}} onClick={() => console.log ('delete')}   />
+            <td>
+              <VscError 
+              key={campus.id} 
+              style ={{color: 'indigo', cursor: 'pointer', width: '50'}} 
+              onClick={() => props.allCampuses.deleteCamp(campus.id)} />
+              {/* onClick={() => deleteCampusThunk(campus.id)} */}
+              {/* onClick={() => this.props.deleteCampusThunk(campus.id)} */}
+              {/* onClick={() => props.allCampus.deleteCampusThunk(campus.id)} */}
             </td>
         </tr>        
       ))}
