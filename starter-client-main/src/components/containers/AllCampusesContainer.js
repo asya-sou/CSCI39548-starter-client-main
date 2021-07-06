@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchAllCampusesThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
+import { deleteCampusThunk } from "../../store/thunks";
 
 class AllCampusesContainer extends Component {
   componentDidMount() {
@@ -32,6 +33,12 @@ const mapDispatch = (dispatch) => {
     fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
   };
 };
+
+const deleteCamp = (dispatch) => {
+  return {
+    deleteCampus: () => dispatch(deleteCampusThunk()),
+  }
+}
 
 // Type check props;
 AllCampusesContainer.propTypes = {
