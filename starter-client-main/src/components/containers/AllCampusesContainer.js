@@ -11,14 +11,16 @@ class AllCampusesContainer extends Component {
     this.props.fetchAllCampuses();
   }
 
+/*****************DELETE CAMP***********************************/
   deleteCamp(id) {
     console.log({id});
     this.props.deleteCampusThunk(id);
   }
- /*   deleteCamp = (dispatch) => {
+
+ /*   deleteCamp = (id) => {
     return{
       //getting campus ID from url
-    deleteCampus: () => dispatch(deleteCampusThunk())
+    deleteCampus: () => deleteCampusThunk(id);
     };
 }; */
 
@@ -31,6 +33,18 @@ class AllCampusesContainer extends Component {
     );
   }
 }
+/*****************DELETE CAMP***********************************/
+/* const mapDelete = (dispatch) => {
+return {
+    deleteCampus: () => dispatch(deleteCampusThunk()),
+  };
+} */
+
+/* const mapDelete = (dispatch) => {
+return {
+    deleteCampus: () => dispatch(deleteCampusThunk()),
+  };
+} */
 
 // Map state to props;
 const mapState = (state) => {
@@ -62,4 +76,4 @@ AllCampusesContainer.propTypes = {
 };
 
 // Export our store-connected container by default;
-export default connect(mapState, mapDispatch)(AllCampusesContainer);
+export default connect(mapState, mapDispatch /*, mapDelete */)(AllCampusesContainer);
