@@ -9,6 +9,7 @@ class AllStudentsContainer extends Component {
     this.props.fetchAllStudents();
   }
 
+
   render() {
     return (
       <AllStudentsView
@@ -17,6 +18,7 @@ class AllStudentsContainer extends Component {
     );
   }
 }
+
 
 // Map state to props;
 const mapState = (state) => {

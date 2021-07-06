@@ -14,7 +14,7 @@ const AllCampusesView = (props) => {
 
   return (
     <div>
-
+    <table>
     <tbody>
       {props.allCampuses.map((campus) => (
         <tr key={campus.id}>
@@ -25,11 +25,12 @@ const AllCampusesView = (props) => {
             </td>
           {/*  <p>{campus.description}</p> */}
           <td >
-              <VscError style ={{color: 'indigo', cursor: 'pointer'}} onClick={() => console.log("hello")}   />
+              <VscError style ={{color: 'indigo', cursor: 'pointer', width: '50'}} onClick={() => console.log("delete", campus.name)}   />
             </td>
         </tr>        
       ))}
       </tbody>
+      </table>
       <Link to={'/'} >
             <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
               HOME

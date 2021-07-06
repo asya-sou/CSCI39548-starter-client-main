@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { VscError } from "react-icons/vsc";
+import { deleteStudent } from "../../store/actions/actionCreators";
 
 const AllStudentsView = (props) => {
 
@@ -10,32 +11,32 @@ const AllStudentsView = (props) => {
   }
 
   return (
-
     <div>
-      {props.allStudents.map((student) => (
-        <tr>
-          <div key={student.id}>
+      <table>
+        <tbody>
+          {props.allStudents.map((student) => (
+            <tr key={student.id}>
 
-          <td>
-            <Link to={`/student/${student.id}`}>
-              <h1>{student.lastName}, {student.firstName}</h1>
-            </Link> 
-          </td>
+              <td>
+                <Link to={`/student/${student.id}`}>
+                  <h1>{student.lastName}, {student.firstName}</h1>
+                </Link> 
+              </td>
 
-          <td>
-              <VscError style ={{color: 'indigo', cursor: 'pointer'}} onClick={() => console.log("hello")}   />
-          </td>
+              <td>
+                  <VscError style ={{color: 'indigo', cursor: 'pointer', width: '50'}} onClick={() => console.log("delete", student.firstName)} />
+              </td>
 
-          </div>
-        </tr>
-      ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <Link to={'/'} >
             <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
-              HOME
+            HOME
             </Button>
       </Link> 
 
-     
     </div>
   );
 };
