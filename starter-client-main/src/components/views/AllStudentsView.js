@@ -10,6 +10,7 @@ const AllStudentsView = (props) => {
   }
 
   return (
+
     <div>
       {props.allStudents.map((student) => (
         <tr>
@@ -22,7 +23,7 @@ const AllStudentsView = (props) => {
           </td>
 
           <td>
-            <VscError color ='indigo'  />
+              <VscError style ={{color: 'indigo', cursor: 'pointer'}} onClick={() => console.log("hello")}   />
           </td>
 
           </div>

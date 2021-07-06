@@ -14,28 +14,28 @@ const AllCampusesView = (props) => {
 
   return (
     <div>
+
+    <tbody>
       {props.allCampuses.map((campus) => (
-        <div key={campus.id}>
-        <tr>
-          <td><img src={campus.imageUrl} width="150" alt="Campus"/></td>
-          <td><Link to={`/campus/${campus.id}`}>
-            <h1>{campus.name}</h1>
-          </Link>
-          </td>
-         {/*  <p>{campus.description}</p> */}
-         <td>
-            <VscError color ='indigo'  />
-          </td>
-          </tr>
-          </div>
-        
+        <tr key={campus.id}>
+            <td><img src={campus.imageUrl} width="150" alt="Campus"/></td>
+            <td><Link to={`/campus/${campus.id}`}>
+              <h1>{campus.name}</h1>
+            </Link>
+            </td>
+          {/*  <p>{campus.description}</p> */}
+          <td >
+              <VscError style ={{color: 'indigo', cursor: 'pointer'}} onClick={() => console.log("hello")}   />
+            </td>
+        </tr>        
       ))}
+      </tbody>
       <Link to={'/'} >
             <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
               HOME
             </Button>
       </Link> 
-    </div>
+      </div>
   );
 };
 
