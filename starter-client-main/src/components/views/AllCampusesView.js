@@ -25,7 +25,7 @@ const AllCampusesView = (props) => {
             </td>
           {/*  <p>{campus.description}</p> */}
           <td >
-              <VscError style ={{color: 'indigo', cursor: 'pointer', width: '50'}} onClick={(campus) => campus.deleteCamp()}   />
+              <VscError style ={{color: 'indigo', cursor: 'pointer', width: '50'}} onClick={() => this.deleteCamp()}   />
             </td>
         </tr>        
       ))}

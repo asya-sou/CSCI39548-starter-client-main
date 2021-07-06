@@ -37,8 +37,8 @@ const mapDispatch = (dispatch) => {
 const deleteCamp = (dispatch) => {
   return {
     deleteCampus: () => dispatch(deleteCampusThunk()),
-  }
-}
+  };
+};
 
 // Type check props;
 AllCampusesContainer.propTypes = {

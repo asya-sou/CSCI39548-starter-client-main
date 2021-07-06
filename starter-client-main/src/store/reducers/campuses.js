@@ -3,8 +3,18 @@ import * as at from "../actions/actionTypes";
 // REDUCER;
 const allCampuses = (state = [], action) => {
   switch (action.type) {
-    case at.FETCH_ALL_CAMPUSES:
+    case at.FETCH_ALL_CAMPUSES
       return action.payload;
+    case at.ADD_CAMPUS:
+      return [...state, action.payload]
+    case at.DELETE_CAMPUS:
+      return state.filter(student => student.id!==action.payload);
+    case at.EDIT_CAMPUS:
+      return state.map(student => { 
+        return (
+          campus.id===action.payload.id ? action.payload : campus
+        );
+      });
     default:
       return state;
   }
