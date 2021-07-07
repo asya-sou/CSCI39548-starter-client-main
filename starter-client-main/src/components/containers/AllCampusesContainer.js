@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchAllCampusesThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 import { deleteCampusThunk } from "../../store/thunks";
-
+import { deleteCampus } from "../../store/actions/actionCreators";
 class AllCampusesContainer extends Component {
   componentDidMount() {
     console.log(this.props);
@@ -40,11 +40,18 @@ return {
   };
 } */
 
-/* const mapDelete = (dispatch) => {
-return {
-    deleteCampus: () => dispatch(deleteCampusThunk()),
+//DW https://www.digitalocean.com/community/tutorials/redux-redux-thunk
+ const mapDelete = (dispatch) => {
+  return {
+    onDeleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),
   };
-} */
+}; 
+
+/* const mapDelete = (campusId) => {
+  return {
+    deleteCampus: (campusId) => deleteCampusThunk(campusId),
+  };
+}; */
 
 // Map state to props;
 const mapState = (state) => {
@@ -60,13 +67,6 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-const mapDelete = (dispatch) => {
-  return {
-    deleteCampus: () => dispatch(deleteCampusThunk()),
-  };
-};
-
-
 
 // Type check props;
 AllCampusesContainer.propTypes = {
@@ -76,4 +76,4 @@ AllCampusesContainer.propTypes = {
 };
 
 // Export our store-connected container by default;
-export default connect(mapState, mapDispatch /*, mapDelete */)(AllCampusesContainer);
+export default connect(mapState, mapDispatch,  mapDelete)(AllCampusesContainer);
