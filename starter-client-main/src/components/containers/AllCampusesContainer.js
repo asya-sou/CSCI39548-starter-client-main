@@ -12,9 +12,14 @@ class AllCampusesContainer extends Component {
   }
 
 /*****************DELETE CAMP***********************************/
-  deleteCamp(id) {
+ /*  deleteCamp(id) {
     console.log({id});
     this.props.deleteCampusThunk(id);
+  } */
+
+  deleteCamp(id) {
+    console.log({id});
+    this.deleteCampusThunk(id);
   }
 
  /*   deleteCamp = (id) => {
@@ -43,7 +48,7 @@ return {
 //DW https://www.digitalocean.com/community/tutorials/redux-redux-thunk
  const mapDelete = (dispatch) => {
   return {
-    onDeleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),
+    onDeleteCampus: (campusId) => {dispatch(deleteCampusThunk(campusId));}
   };
 }; 
 
@@ -72,7 +77,7 @@ const mapDispatch = (dispatch) => {
 AllCampusesContainer.propTypes = {
   allCampuses: PropTypes.array.isRequired,
   fetchAllCampuses: PropTypes.func.isRequired,
-  deleteCampus: PropTypes.func.isRequired,
+  /* deleteCampus: PropTypes.func.isRequired, */
 };
 
 // Export our store-connected container by default;

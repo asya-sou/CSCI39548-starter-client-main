@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 import { VscError } from "react-icons/vsc";
 import { deleteCampusThunk } from "../../store/thunks";
 import { deleteCampus } from "../../store/actions/actionCreators";
-
+import { allCampuses } from "../../store/reducers";
 
 const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
@@ -29,8 +29,9 @@ const AllCampusesView = (props) => {
             <td> <VscError 
               key={campus.id} 
               style ={{color: 'indigo', cursor: 'pointer', width: '50'}} 
-              onClick={() => this.props.deleteCampus(campus.id)} />
-              {/* onClick={() => mapDelete()} */}
+              onClick={() => this.campus.deleteCamp(campus.id)} />
+              {/* onClic={() => mapDelete()} */}
+              {/* onClick={(e) => e.deleteCampus(e.id)} */}
               {/* onClick={() => deleteCamp(campus.id)} */}
               {/* onClick={() => this.props.deleteCamp(campus.id)} */}
               {/* onClick={() => this.deleteCamp(campus.id)} */}
