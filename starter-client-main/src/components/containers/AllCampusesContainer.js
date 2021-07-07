@@ -76,4 +76,4 @@ AllCampusesContainer.propTypes = {
 };
 
 // Export our store-connected container by default;
-export default connect(mapState, mapDispatch,  mapDelete)(AllCampusesContainer);
+export default connect(mapState, mapDispatch,  /* mapDelete */)(AllCampusesContainer);
