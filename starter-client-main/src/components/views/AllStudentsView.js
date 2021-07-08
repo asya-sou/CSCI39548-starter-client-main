@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
-import { VscError } from "react-icons/vsc";
 import {useDispatch} from 'react-redux'
-import { deleteStudentThunk } from "../../store/thunks";
 import { addStudentThunk } from "../../store/thunks";
 import {useState} from 'react'
 import AppBar from '@material-ui/core/AppBar';
@@ -33,16 +31,18 @@ const AllStudentsView = (props) => {
   }
   /*------------------- END ADD STUDENT FORM SET-UP ------------------------ */
 
+  const {allStudents, deleteStudent} = props;
+
     /*if no students - message*/
-    if (!props.allStudents.length) {
+    if (!allStudents.length) {
       return <div>There are no students.</div>;
     } 
 
   return (
     <div className="root">
-          {/* ----------------- NAV BAR & ADD STUDENTS FORM ---------------- */} 
+          {/* ----------------- NAV BAR ---------------- */} 
 
-        <AppBar position="static" elevation={0} className="appBar">
+      <AppBar position="static" elevation={0} className="appBar">
         <Toolbar className="appBar">
           <Typography variant="h6" className="navTitle" >
             All Students
@@ -60,23 +60,25 @@ const AllStudentsView = (props) => {
             </Button>
           </Link>
 
-      {/* if showForm false - show ADD STUDENT, else - HIDE FORM */}
-      {showForm ? ( 
-        <Button 
-        variant="contained" color="primary" style={{marginLeft: '10px'}}
-        onClick={ () => {setShowForm(!showForm)} }>
-        HIDE FORM
-      </Button> 
+          {/* if showForm false - show ADD STUDENT, else - HIDE FORM */}
+          {showForm ? ( 
+            <Button 
+            variant="contained" color="primary" style={{marginLeft: '10px'}}
+            onClick={ () => {setShowForm(!showForm)} }>
+            HIDE FORM
+          </Button> 
 
-      ) : ( 
-        <Button 
-        variant="contained" color="primary" style={{marginLeft: '10px'}}
-        onClick={ () => {setShowForm(!showForm)} }>
-        ADD STUDENT
-      </Button> 
-      )}
+          ) : ( 
+            <Button 
+            variant="contained" color="primary" style={{marginLeft: '10px'}}
+            onClick={ () => {setShowForm(!showForm)} }>
+            ADD STUDENT
+          </Button> 
+          )}
         </Toolbar>
       </AppBar>
+
+      {/* ----------------- ADD STUDENTS FORM ---------------- */} 
       {/* if ADD STUDENT button pressed - shows form below, else shows nothing */}
       {showForm ? (
         <form onSubmit={() => addNewStudent()}>
@@ -104,8 +106,11 @@ const AllStudentsView = (props) => {
           <label> Campus </label> 
           <input type="text" value={campusId} onChange={(e) => setCampusId(e.target.value)} placeholder="" name="campusId"/>
           </div>
-          <button style={{marginLeft: '10px'}}> Add Student </button>
+          {/* for some reason nothing but adding empty cells aids in aligning this button right*/}
+          <p></p><p></p><p></p> 
+          <button> ADD </button>
           
+
         </form> 
       ): ''}
 
@@ -127,7 +132,7 @@ const AllStudentsView = (props) => {
                   variant="contained" color="primary"
                   style={{marginLeft: '10px'}}
                   /* style ={{color: 'indigo', cursor: 'pointer', width: '50'}} */
-                  onClick={() => dispatch(deleteStudentThunk(student.id)) }> X </Button>
+                  onClick={() => deleteStudent(student.id) }> X </Button>
               </td>
 
             </tr>
