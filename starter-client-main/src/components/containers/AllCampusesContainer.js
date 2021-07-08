@@ -8,6 +8,8 @@ import { deleteCampus } from "../../store/actions/actionCreators";
 import {useDispatch} from 'react-redux'
 
 class AllCampusesContainer extends Component {
+
+
   componentDidMount() {
     console.log(this.props);
     this.props.fetchAllCampuses();
