@@ -5,15 +5,20 @@ import { VscError } from "react-icons/vsc";
 import { deleteCampusThunk } from "../../store/thunks";
 import { deleteCampus } from "../../store/actions/actionCreators";
 import { allCampuses } from "../../store/reducers";
+import {useDispatch} from 'react-redux'
+import { campus } from "../../store/reducers";
+import thunk from 'redux-thunk';
 
 const AllCampusesView = (props) => {
+  const dispatch = useDispatch()
+
   if (!props.allCampuses.length) {
     return <div>There are no campuses.</div>;
   }
-
 /* const handleDelete = (e) => {
    this.props.deleteCamp(e);
   } */
+
 
   return (
     <div>
@@ -29,7 +34,7 @@ const AllCampusesView = (props) => {
             <td> <VscError 
               key={campus.id} 
               style ={{color: 'indigo', cursor: 'pointer', width: '50'}} 
-              onClick={() => this.campus.deleteCamp(campus.id)} />
+              onClick={() => dispatch(deleteCampusThunk(campus.id))} />
               {/* onClic={() => mapDelete()} */}
               {/* onClick={(e) => e.deleteCampus(e.id)} */}
               {/* onClick={() => deleteCamp(campus.id)} */}
