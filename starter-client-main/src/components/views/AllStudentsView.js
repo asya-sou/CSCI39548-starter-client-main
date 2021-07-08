@@ -40,8 +40,7 @@ const AllStudentsView = (props) => {
 
   return (
     <div className="root">
-          {/* ----------------- NAV BAR ---------------- */} 
-
+      {/* ----------------- NAV BAR ---------------- */} 
       <AppBar position="static" elevation={0} className="appBar">
         <Toolbar className="appBar">
           <Typography variant="h6" className="navTitle" >
