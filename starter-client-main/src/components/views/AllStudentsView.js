@@ -6,31 +6,111 @@ import {useDispatch} from 'react-redux'
 import { deleteStudentThunk } from "../../store/thunks";
 import { addStudentThunk } from "../../store/thunks";
 import {useState} from 'react'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 const AllStudentsView = (props) => {
+  
   const dispatch = useDispatch()
+
+  /*-------------------ADD STUDENT FORM SET-UP ------------------------ */
   const [showForm, setShowForm] = useState (false)
   
-  var [firstName, setFirstName] = useState ('')
-  var [lastName, setLastName] = useState ('')
-  var [email, setEmail] = useState ('')
-  var [imageUrl, setImageUrl] = useState ('https://img.etimg.com/thumb/msid-80095660,width-650,imgsize-601228,,resizemode-4,quality-100/elon-musk-is-the-worlds-second-richest-person-with-an-estimated-net-worth-of-158-billion-.jpg')
-  var [gpa, setGpa] = useState (0.0)
+  /*ADD STUDENTS FORM STATE DEFINITIONS*/
+  var [firstName, setFirstName] = useState ()
+  var [lastName, setLastName] = useState ()
+  var [email, setEmail] = useState ()
+  var [imageUrl, setImageUrl] = useState ()
+  var [gpa, setGpa] = useState ()
+  var [campusId, setCampusId] = useState ()
 
+  /*dispatch addSTudentsThunk based on form input
+  that was initially passed as page state*/
   function addNewStudent(){
-/*   e.preventDefault()
- */  
-const newStudent = {firstName, lastName, email, imageUrl, gpa}
-  dispatch(addStudentThunk(newStudent))
-}
-
-  if (!props.allStudents.length) {
-    return <div>There are no students.</div>;
+    const newStudent = {firstName, lastName, email, imageUrl, gpa, campusId}
+    dispatch(addStudentThunk(newStudent))
   }
+  /*------------------- END ADD STUDENT FORM SET-UP ------------------------ */
+
+    /*if no students - message*/
+    if (!props.allStudents.length) {
+      return <div>There are no students.</div>;
+    } 
 
   return (
-    <div>
-      <table>
+    <div className="root">
+          {/* ----------------- NAV BAR & ADD STUDENTS FORM ---------------- */} 
+
+        <AppBar position="static" elevation={0} className="appBar">
+        <Toolbar className="appBar">
+          <Typography variant="h6" className="navTitle" >
+            All Students
+          </Typography>
+
+          <Link to={'/'} >
+            <Button variant="contained" color="primary" style={{marginLeft: '10px'}}>
+            HOME
+            </Button>
+          </Link> 
+          <Link to={'/campuses'} >
+
+            <Button variant="contained" color="primary" style={{marginLeft: '10px'}}>
+              All Campuses
+            </Button>
+          </Link>
+
+      {/* if showForm false - show ADD STUDENT, else - HIDE FORM */}
+      {showForm ? ( 
+        <Button 
+        variant="contained" color="primary" style={{marginLeft: '10px'}}
+        onClick={ () => {setShowForm(!showForm)} }>
+        HIDE FORM
+      </Button> 
+
+      ) : ( 
+        <Button 
+        variant="contained" color="primary" style={{marginLeft: '10px'}}
+        onClick={ () => {setShowForm(!showForm)} }>
+        ADD STUDENT
+      </Button> 
+      )}
+        </Toolbar>
+      </AppBar>
+      {/* if ADD STUDENT button pressed - shows form below, else shows nothing */}
+      {showForm ? (
+        <form onSubmit={() => addNewStudent()}>
+          <div className='row'>
+          <label>First Name<strong></strong> </label> 
+          <input type="text" value={firstName} onChange={(e) =>setFirstName(e.target.value)} placeholder="Required" name="firstName"/>
+                    
+          <label>Last Name</label> 
+          <input type="text" value={lastName} onChange={(e) =>setLastName(e.target.value)} placeholder="Required" name="lastName"/>
+          </div>
+
+          <div className='row'>
+          <label>Email</label> 
+          <input type="text" value={email} onChange={(e) =>setEmail(e.target.value)} placeholder="Required" name="email"/>
+
+          <label>Photo URL </label> 
+          <input type="text" value={imageUrl} onChange={(e) =>setImageUrl(e.target.value)} placeholder="" name="imageUrl"/>
+          </div>
+
+          <div className='row'>
+
+          <label> GPA </label> 
+          <input type="number" value={gpa} onChange={(e) => setGpa(e.target.value)} placeholder="" name="gpa"/>
+
+          <label> Campus </label> 
+          <input type="text" value={campusId} onChange={(e) => setCampusId(e.target.value)} placeholder="" name="campusId"/>
+          </div>
+          <button style={{marginLeft: '10px'}}> Add Student </button>
+          
+        </form> 
+      ): ''}
+
+    {/* ----------------- STUDENTS TABLE ---------------- */} 
+     <table>
         <tbody>
           {props.allStudents.map((student) => (
             <tr key={student.id}>
@@ -41,6 +121,7 @@ const newStudent = {firstName, lastName, email, imageUrl, gpa}
                 </Link> 
               </td>
 
+              {/* DELETE STUDENT  */}
               <td>
                   <Button 
                   variant="contained" color="primary"
@@ -53,31 +134,12 @@ const newStudent = {firstName, lastName, email, imageUrl, gpa}
           ))}
         </tbody>
       </table>
-      <Link to={'/'} >
-            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
-            HOME
-            </Button>
-      </Link> 
+      {/* --------------- END STUDENTS TABLE -------------- */} 
+      
 
-            
-      <Button 
-        variant="contained" color="primary" style={{marginRight: '10px'}}
-        onClick={ () => {setShowForm(!showForm)} }>
-        ADD STUDENT
-      </Button>
-    
-      <form onSubmit={() => addNewStudent()}>
-              
-                  <label>First Name </label> 
-                  <input type="text" value={firstName} onChange={(e) =>setFirstName(e.target.value)} placeholder="First Name" name="firstName"/>
-                  
-                  <label>Last Name </label> 
-                  <input type="text" value={lastName} onChange={(e) =>setLastName(e.target.value)} placeholder="Last Name" name="lastName"/>
-
-                  <label>Email </label> 
-                  <input type="text" value={email} onChange={(e) =>setEmail(e.target.value)} placeholder="Last Name" name="lastName"/>
-                <button>Add Transaction</button>
-              </form>
+      
+      
+      
 
     </div>
   );
