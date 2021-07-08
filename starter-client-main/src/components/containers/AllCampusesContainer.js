@@ -5,6 +5,8 @@ import { fetchAllCampusesThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 import { deleteCampusThunk } from "../../store/thunks";
 import { deleteCampus } from "../../store/actions/actionCreators";
+import {useDispatch} from 'react-redux'
+
 class AllCampusesContainer extends Component {
   componentDidMount() {
     console.log(this.props);
@@ -33,6 +35,10 @@ class AllCampusesContainer extends Component {
     };
 }; */
 
+  /* deleteCamp = (id) => {
+    useDispatch(deleteCampusThunk(id))
+  } */
+
   render() {
     return (
       <AllCampusesView
@@ -42,6 +48,8 @@ class AllCampusesContainer extends Component {
     );
   }
 }
+
+
 /*****************DELETE CAMP***********************************/
 /* const mapDelete = (dispatch) => {
 return {
@@ -68,6 +76,8 @@ return {
   };
 }; */
 
+
+
 // Map state to props;
 const mapState = (state) => {
   return {
@@ -82,11 +92,11 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-function deleteCamp(id) {
+/* function deleteCamp(id) {
   return function(dispatch) {
    return dispatch(deleteCampusThunk(id))
   }
- };
+ }; */
 
 
 // Type check props;
@@ -97,4 +107,4 @@ AllCampusesContainer.propTypes = {
 };
 
 // Export our store-connected container by default;
-export default connect(mapState, mapDispatch, deleteCamp /* mapDelete */)(AllCampusesContainer);
+export default connect(mapState, mapDispatch, /* deleteCamp */ /* mapDelete */)(AllCampusesContainer);

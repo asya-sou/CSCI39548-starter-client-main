@@ -2,8 +2,11 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { VscError } from "react-icons/vsc";
+import {useDispatch} from 'react-redux'
+import { deleteStudentThunk } from "../../store/thunks";
 
 const AllStudentsView = (props) => {
+  const dispatch = useDispatch()
 
   if (!props.allStudents.length) {
     return <div>There are no students.</div>;
@@ -23,7 +26,11 @@ const AllStudentsView = (props) => {
               </td>
 
               <td>
-                  <VscError style ={{color: 'indigo', cursor: 'pointer', width: '50'}} onClick={() => console.log("delete", student.firstName)} />
+                  <Button 
+                  variant="contained" color="primary"
+                  style={{marginLeft: '10px'}}
+                  /* style ={{color: 'indigo', cursor: 'pointer', width: '50'}} */
+                  onClick={() => dispatch(deleteStudentThunk(student.id)) }> X </Button>
               </td>
 
             </tr>
