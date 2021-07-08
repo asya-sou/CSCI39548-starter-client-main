@@ -5,6 +5,8 @@ import * as at from './actionTypes';
  * for each action type
  */
 
+/****************************** CAMPUSES *****************************/
+
 // All campuses
 export const fetchAllCampuses = (campuses) => {
   return {
@@ -20,6 +22,28 @@ export const fetchCampus = (campus) => {
     payload: campus,
   };
 };
+export const addCampus = (campus) => {
+  return {
+    type: at.ADD_CAMPUS,
+    payload: campus,
+  };
+};
+
+export const deleteCampus = (campusId) => {
+  return {
+    type: at.DELETE_CAMPUS,
+    payload: campusId,
+  };
+};
+
+export const editCampus = (campus) => {
+  return {
+    type: at.EDIT_CAMPUS,
+    payload: campus,
+  };
+};
+
+/****************************** STUDENTS *****************************/
 
 //All students
 export const fetchAllStudents = (students) => {
@@ -42,7 +66,6 @@ export const deleteStudent = (studentId) => {
     payload: studentId,
   };
 };
-
 
 export const editStudent = (student) => {
   return {
