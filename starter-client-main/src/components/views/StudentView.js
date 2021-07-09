@@ -6,24 +6,26 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 const StudentView = (props) => {
-  const {student, editStudent} = props;
+  const {student, editStudent, fetchStudent} = props;
   const [showEdit, setShowEdit] = useState (false)
-
   /*ADD STUDENTS FORM STATE DEFINITIONS*/
-  var [firstName, setFirstName] = useState (student.firstName)
-  var [lastName, setLastName] = useState (student.lastName)
-  var [email, setEmail] = useState (student.email)
-  var [imageUrl, setImageUrl] = useState (student.imageUrl)
-  var [gpa, setGpa] = useState (student.gpa)
-  var [campusId, setCampusId] = useState (student.campusId)
+  var [id] = useState(student.id)
+  var [firstName, setFirstName] = useState(student.firstName)
+  var [lastName, setLastName] = useState(student.lastName)
+  var [email, setEmail] = useState(student.email)
+  var [imageUrl, setImageUrl] =useState (student.imageUrl)
+  var [gpa, setGpa] = useState(student.gpa)
+  var [campusId, setCampusId] = useState(student.campus? student.campus.id : 0)
 
   /*dispatch addSTudentsThunk based on form input
   that was initially passed as page state*/
-  function updateStudent(){
-    student = {firstName, lastName, email, imageUrl, gpa, campusId}
-    editStudent(student)
+  async function updateStudent(e){
+    e.preventDefault()
+    const updatedStudent = {id, firstName, lastName, email, imageUrl, gpa, campusId}
+    this.setRedirectId(id)
+    await editStudent(updatedStudent)
+    this.setRedirect(true)
   }
-
 
   return (
     <div className="root">
@@ -71,14 +73,14 @@ const StudentView = (props) => {
       </Toolbar>
     </AppBar>
 
-    <form onSubmit={() => updateStudent()}> 
+     
     {showEdit ? (
-      <div>
+      <form onSubmit={() => updateStudent()}>
       <img src={student.imageUrl} height="200" alt="Student"/>
       <table> <tbody>
         <tr>
         <td><label>Image Url</label></td>
-        <td colSpan={2}><input type="text" value={imageUrl} onChange={(e) =>setImageUrl(e.target.value)} placeholder={student.imageUrl} name="imageUrl"/></td>
+        <td ><input type="text" value={imageUrl} onChange={(e) =>setImageUrl(e.target.value)} placeholder={student.imageUrl} name="imageUrl"/></td>
         </tr>
 
         <tr>
@@ -102,15 +104,14 @@ const StudentView = (props) => {
         <td><label>GPA</label></td>
         <td><input type="number" value={gpa} onChange={(e) => setGpa(e.target.value)} placeholder={student.gpa} name="gpa"/></td>
         </tr>
-
         </tbody></table>
-        <button>Save Edits</button>
-        </div>
+        <button>UPDATE</button>
 
+        </form>
     ) : (
       <div>
         <img src={student.imageUrl} height="200" alt="Student"/> 
-        <h1>{student.firstName} {student.lastName}</h1>
+        <h1>{student.firstName} {student.lastName} [#{student.id}]</h1>
         <p>Campus: {student.campusId ? <Link to={`/campus/${student.campusId}`}> {student.campus.name} </Link> : "Student is not currently enrolled" }</p>
         <p>Email: {student.email}</p>
         <p>GPA: {student.gpa}</p>
@@ -118,7 +119,7 @@ const StudentView = (props) => {
       ) }
 
 
-      </form>
+      
       
     </div>
   );

@@ -1,7 +1,6 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Thunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 import { fetchAllCampusesThunk } from "../../store/thunks";
 import { deleteCampusThunk} from "../../store/thunks";
