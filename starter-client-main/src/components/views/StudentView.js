@@ -5,7 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Redirect } from 'react-router';
-
 const StudentView = (props) => {
   var {student, editStudent} = props;
   var [showEdit, setShowEdit] = useState (false)
@@ -13,11 +12,11 @@ const StudentView = (props) => {
 
   /*ADD STUDENTS FORM STATE DEFINITIONS*/
   var [id] = useState(student.id)
-  var [redirectStatus, setRedirectStatus] = useState(false)
+  /* var [redirectStatus, setRedirectStatus] = useState(false) */
   var [firstName, setFirstName] = useState(student.firstName)
   var [lastName, setLastName] = useState(student.lastName)
   var [email, setEmail] = useState(student.email)
-  var [imageUrl, setImageUrl] =useState (student.imageUrl)
+  var [imageUrl, setImageUrl] = useState(student.imageUrl)
   var [gpa, setGpa] = useState(student.gpa)
   var [campusId, setCampusId] = useState(student.campus? student.campus.id : 0)
 
@@ -26,8 +25,11 @@ const StudentView = (props) => {
   async function updateStudent(e){
     e.preventDefault()
     const updatedStudent = {id, firstName, lastName, email, imageUrl, gpa, campusId}
-    await editStudent(updatedStudent) 
-    /*setRedirectStatus(true)*/
+    editStudent(updatedStudent)
+/*     await editStudent(updatedStudent) 
+ */    /*setRedirectStatus(true)*/
+    
+    this.setNewRender()
 
   }
 

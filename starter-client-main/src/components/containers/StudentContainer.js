@@ -7,12 +7,14 @@ import { editStudentThunk } from "../../store/thunks";
 import StudentView from "../views/StudentView";
 import { Redirect } from "react-router";
 class StudentContainer extends Component {
-   constructor(props) {
+    constructor(props) {
     super(props);
     this.state = {
       render: false,
     }
-  } 
+    this.setNewRender = this.setNewRender.bind(this)
+  };  
+
 /*   componentWillUnmount() {
     this.setState({redirect: false, redirectId: null});
 } */
@@ -20,8 +22,16 @@ componentDidMount() {
   //getting student ID from url
    this.props.fetchStudent(this.props.match.params.id);
   console.log('^ mount')
-
 } 
+/* useEffect() {
+  this.props.fetchStudent(this.props.match.params.id);
+  console.log('^ effect')
+
+} */
+
+setNewRender() {
+  this.setState({render: !this.render})
+}
 /* componentDidUpdate() {
   //getting student ID from url
   this.props.fetchStudent(this.props.match.params.id);
@@ -37,7 +47,7 @@ componentDidMount() {
       <StudentView 
         student={this.props.student}
         editStudent={this.props.editStudent}
-
+        setNewRender={this.setNewRender}
         /*setRedirect={this.setRedirect}
         setRedirectId={this.setRedirectId}*/
       />
@@ -62,9 +72,9 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-StudentContainer.propTypes = {
+/* StudentContainer.propTypes = {
   student: PropTypes.object.isRequired,
   fetchStudent:PropTypes.func.isRequired,
   editStudent: PropTypes.func.isRequired,
-};
+}; */
 export default connect(mapState, mapDispatch)(StudentContainer);
