@@ -1,9 +1,13 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchAllCampusesThunk } from "../../store/thunks";
+import { Thunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
-import { deleteCampusThunk, addCampusThunk, editCampusThunk } from "../../store/thunks";
+import { fetchAllCampusesThunk } from "../../store/thunks";
+import { deleteCampusThunk} from "../../store/thunks";
+import {  addCampusThunk } from "../../store/thunks";
+import { editCampusThunk } from "../../store/thunks";
+
 class AllCampusesContainer extends Component {
 
   componentDidMount() {
@@ -17,6 +21,8 @@ class AllCampusesContainer extends Component {
       <AllCampusesView
         allCampuses={this.props.allCampuses}
         deleteCampus={this.props.deleteCampus}
+        addCampus={this.props.addCampus}
+        editCampus={this.props.editCampus}
       />
     );
   }
@@ -34,16 +40,11 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
-    deleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId))
+    deleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),
+    addCampus: (campus) => dispatch(addCampusThunk(campus)),
+    editCampus: (campus) => dispatch(editCampusThunk(campus))
   };
 };
-
-/* function deleteCamp(id) {
-  return function(dispatch) {
-   return dispatch(deleteCampusThunk(id))
-  }
- }; */
-
 
 // Type check props;
 AllCampusesContainer.propTypes = {
@@ -53,4 +54,4 @@ AllCampusesContainer.propTypes = {
 };
 
 // Export our store-connected container by default;
-export default connect(mapState, mapDispatch, /* deleteCamp */ /* mapDelete */)(AllCampusesContainer);
+export default connect(mapState, mapDispatch)(AllCampusesContainer);

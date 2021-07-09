@@ -25,14 +25,13 @@ label { display: table-cell; text-align: right; padding-right: 10px; padding-lef
 
 /*navbar copying from homepage style*/
 .root {
-  flexGrow: 1;
+  flex-grow: 1;
 }
 .navTitle {
-  flexGrow: 1;
-  textAlign: left;
-  fontType: bold;
-  fontFamily: 'Courier; sans-serif';
-  fontSize: 5px;
+  text-align:left;
+  font-type: bold;
+  font-family: 'Courier; sans-serif';
+  font-size: 5px;
   color: #CDDC39;
 }
 .appBar{

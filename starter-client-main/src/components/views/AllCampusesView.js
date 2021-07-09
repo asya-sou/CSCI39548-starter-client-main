@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import { addCampusThunk } from "../../store/thunks";
 import {useDispatch} from 'react-redux'
 import {useState} from 'react'
 import AppBar from '@material-ui/core/AppBar';
@@ -9,7 +8,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 const AllCampusesView = (props) => {
-  const dispatch = useDispatch()
 
   /*-------------------ADD CAMPUS FORM SET-UP ------------------------ */
   const [showForm, setShowForm] = useState (false)
@@ -19,18 +17,18 @@ const AllCampusesView = (props) => {
   var [address, setAddress] = useState ()
   var [description, setDescription] = useState ()
   var [imageUrl, setImageUrl] = useState ()
-  var [studentId, setStudentId] = useState ()
+  var [students, setStudents] = useState ()
 
   /*dispatch addSTudentsThunk based on form input
   that was initially passed as page state*/
   function addNewCampus(){
-    const newCampus = {name, address, description, imageUrl, studentId}
-    dispatch(addCampusThunk(newCampus))
+    const newCampus = {name, address, description, imageUrl, students}
+    addCampus(newCampus)
   }
 
       /*-------------------ADD CAMPUS FORM SET-UP ------------------------ */
 
-  const {allCampuses, deleteCampus} = props;
+  const {allCampuses, deleteCampus, addCampus} = props;
 
   if (!allCampuses.length) {
     return <div>There are no campuses.</div>;
@@ -99,13 +97,14 @@ const AllCampusesView = (props) => {
           <input type="text" value={imageUrl} onChange={(e) =>setImageUrl(e.target.value)} placeholder="" name="imageUrl"/>
           </div>
 
-          <div className='row'>
+         {/*  <div className='row'>
           <p></p><p></p>
           <label> Students </label> 
-          <input type="number" value={studentId} onChange={(e) => setStudentId(e.target.value)} placeholder="" name="gpa"/>
+          <input type="text" value={students} onChange={(e) => setStudents(...,e.target.value)} placeholder="" name="students"/> 
+            </div> */}
 
-          </div>
-          {/* for some reason nothing but adding empty cells aids in aligning this button right*/}
+        
+          {/* for some reason nothing but adding empty cells aids in aligning this button right, cannot merge cells*/}
           <p></p><p></p><p></p> 
           <button> ADD </button>
           
