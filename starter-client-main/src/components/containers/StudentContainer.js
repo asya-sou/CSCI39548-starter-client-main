@@ -10,9 +10,16 @@ class StudentContainer extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      render: false,
+      id: 0,
+      firstName: '',
+      lastName: '',
+      email: '',
+      imageUrl: '',
+      gpa: 0.0,
+      campusId: 0,
+      redirect:false,
+      redirectId:null
     }
-    this.setNewRender = this.setNewRender.bind(this)
   };  
 
 /*   componentWillUnmount() {
@@ -21,14 +28,52 @@ class StudentContainer extends Component {
 componentDidMount() {
   //getting student ID from url
    this.props.fetchStudent(this.props.match.params.id);
+   this.setState({
+    id: this.props.id, 
+    firstName: this.props.firstName, lastName: this.props.lastName, 
+    email: this.props.email, 
+    imageUrl: this.props.imageUrl, gpa: this.props.gpa, campusId: this.props.campusId});
   console.log('^ mount')
 } 
+/* componentWillUnmount() {
+  this.setState({redirect: false, redirectId: null});
+} */
+handleSubmit = async event => {
+  event.preventDefault();
+
+  let edStudent = {
+    id: this.state.id, 
+    firstName: this.state.firstName, lastName: this.state.lastName, 
+    email: this.state.email, 
+    imageUrl: this.props.imageUrl, gpa: this.state.gpa, campusId: this.state.campusId
+  };
+  
+  let editedStudent = await this.props.editStudent(edStudent);
+
+  this.setState({
+    id: 0,
+      firstName: '',
+      lastName: '',
+      email: '',
+      imageUrl: '',
+      gpa: 0.0,
+      campusId: 0,
+      redirect:false,
+      redirectId: edStudent.id
+  });
+}
+handleChange = event => {
+  this.setState({
+    [event.target.name]: event.target.value
+  });
+}
 /* useEffect() {
   this.props.fetchStudent(this.props.match.params.id);
   console.log('^ effect')
 
 } */
 
+setInfo
 setNewRender() {
   this.setState({render: !this.render})
 }
@@ -42,12 +87,16 @@ setNewRender() {
   } */
 
   render() {
-
+    if(this.state.redirect) {
+      return (<Redirect to={`/student/${this.state.redirectId}`}/>)
+    }
     return (
       <StudentView 
         student={this.props.student}
         editStudent={this.props.editStudent}
         setNewRender={this.setNewRender}
+        handleChange = {this.handleChange} 
+          handleSubmit={this.handleSubmit}     
         /*setRedirect={this.setRedirect}
         setRedirectId={this.setRedirectId}*/
       />
