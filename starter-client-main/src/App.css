@@ -7,3 +7,38 @@
   color: #61dafb;
 }
 
+/*allStudentsView/ allCampusView tables*/
+table {
+  margin-left:10px;
+}
+
+/*add form style*/
+form {display: table; padding: 10px; background-color: #11153e;}
+form button { margin-top: 5px; width:100%; border-radius: 4px; border:none; background-color: #5869b8; padding: 10px; color:white; }
+form button:hover {margin-top: 5px; width:100%; border-radius: 4px; border:none; background-color: #4257b4; padding: 10px; color:white; }
+.row {display: table-row;}
+
+.col {display: table-cell; }
+input { display: table-cell; } 
+form p {display: table-cell;}
+label { display: table-cell; text-align: right; padding-right: 10px; padding-left: 10px; color:#CDDC39} 
+
+/*navbar copying from homepage style*/
+.root {
+  flex-grow: 1;
+}
+.navTitle {
+  text-align:left;
+  font-type: bold;
+  font-family: 'Courier; sans-serif';
+  font-size: 5px;
+  color: #CDDC39;
+}
+.appBar{
+  background-color: #11153e;
+  shadows: none;
+}
+
+.appbar links{
+  textDecoration: none;
+}

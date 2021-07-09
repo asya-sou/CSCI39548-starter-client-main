@@ -1,9 +1,25 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchAllStudentsThunk } from "../../store/thunks";
+import { fetchAllStudentsThunk , addStudentThunk, deleteStudentThunk } from "../../store/thunks";
 import AllStudentsView from "../views/AllStudentsView";
+import {useState} from 'react'
+
 class AllStudentsContainer extends Component {
+  /* constructor(props) {
+    super(props);
+    this.state = {
+      showForm: false
+    };
+    this.onAddClick = this.onAddClick.bind(this);
+  }
+
+  onAddClick () {
+    this.setState({showForm: true});
+    console.log (this.state.showForm)
+  }  */
+
+
   componentDidMount() {
     console.log(this.props);
     this.props.fetchAllStudents();
@@ -14,6 +30,7 @@ class AllStudentsContainer extends Component {
     return (
       <AllStudentsView
         allStudents={this.props.allStudents}
+        deleteStudent={this.props.deleteStudent}
       />
     );
   }
@@ -31,6 +48,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
+    deleteStudent: (studentId) => dispatch(deleteStudentThunk(studentId)),
   };
 };
 
