@@ -13,16 +13,17 @@ table {
 }
 
 /*add form style*/
-form {display: table; padding: 10px; background-color: #11153e;}
+.addForm {display: table; padding: 10px; background-color: #11153e;}
 form button { margin-top: 5px; width:100%; border-radius: 4px; border:none; background-color: #5869b8; padding: 10px; color:white; }
 form button:hover {margin-top: 5px; width:100%; border-radius: 4px; border:none; background-color: #4257b4; padding: 10px; color:white; }
 .row {display: table-row;}
 
 .col {display: table-cell; }
-input { display: table-cell; } 
-form p {display: table-cell;}
-label { display: table-cell; text-align: right; padding-right: 10px; padding-left: 10px; color:#CDDC39} 
-
+.colspan2 {column-span:all; }
+.addForm input { display: table-cell; } 
+.addForm p {display: table-cell;}
+.addForm label { display: table-cell; text-align: right; padding-right: 10px; padding-left: 10px; color:#CDDC39} 
+label {  text-align: left; padding-right: 10px; }
 /*navbar copying from homepage style*/
 .root {
   flex-grow: 1;

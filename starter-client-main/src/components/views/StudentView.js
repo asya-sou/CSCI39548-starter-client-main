@@ -9,6 +9,21 @@ const StudentView = (props) => {
   const {student, editStudent} = props;
   const [showEdit, setShowEdit] = useState (false)
 
+  /*ADD STUDENTS FORM STATE DEFINITIONS*/
+  var [firstName, setFirstName] = useState (student.firstName)
+  var [lastName, setLastName] = useState (student.lastName)
+  var [email, setEmail] = useState (student.email)
+  var [imageUrl, setImageUrl] = useState (student.imageUrl)
+  var [gpa, setGpa] = useState (student.gpa)
+  var [campusId, setCampusId] = useState (student.campusId)
+
+  /*dispatch addSTudentsThunk based on form input
+  that was initially passed as page state*/
+  function updateStudent(){
+    student = {firstName, lastName, email, imageUrl, gpa, campusId}
+    editStudent(student)
+  }
+
 
   return (
     <div className="root">
@@ -55,11 +70,55 @@ const StudentView = (props) => {
 
       </Toolbar>
     </AppBar>
-      <img src={student.imageUrl} height="200" alt="Student"/>      
-      <h1>{student.firstName} {student.lastName}</h1>
-      <p>Campus: {student.campusId ? <Link to={`/campus/${student.campusId}`}> {student.campus.name} </Link> : "Student is not currently enrolled" }</p>
-      <p>Email: {student.email}</p>
-      <p>GPA: {student.gpa}</p>
+
+    <form onSubmit={() => updateStudent()}> 
+    {showEdit ? (
+      <div>
+      <img src={student.imageUrl} height="200" alt="Student"/>
+      <table> <tbody>
+        <tr>
+        <td><label>Image Url</label></td>
+        <td colSpan={2}><input type="text" value={imageUrl} onChange={(e) =>setImageUrl(e.target.value)} placeholder={student.imageUrl} name="imageUrl"/></td>
+        </tr>
+
+        <tr>
+        <td><label>Full Name</label></td>
+        <td><input type="text" value={firstName} onChange={(e) =>setFirstName(e.target.value)} placeholder={student.firstName} name="firstName"/></td>     
+        <td><input type="text" value={lastName} onChange={(e) =>setLastName(e.target.value)} placeholder={student.lastName} name="lastName"/></td>
+        </tr>
+        
+        <tr>
+        <td><label>Campus</label></td>
+        <td>{student.campusId ? <Link to={`/campus/${student.campusId}`}> {student.campus.name} </Link> : "N/A" }</td>
+        <td><input type="text" value={campusId} onChange={(e) =>setCampusId(e.target.value)} placeholder={student.campusId} name="campusId"/></td>     
+        </tr>
+
+        <tr>
+        <td><label>Email</label></td>
+        <td><input type="text" value={email} onChange={(e) =>setEmail(e.target.value)} placeholder={student.email} name="imageUrl"/></td>
+        </tr>
+
+        <tr>
+        <td><label>GPA</label></td>
+        <td><input type="number" value={gpa} onChange={(e) => setGpa(e.target.value)} placeholder={student.gpa} name="gpa"/></td>
+        </tr>
+
+        </tbody></table>
+        <button>Save Edits</button>
+        </div>
+
+    ) : (
+      <div>
+        <img src={student.imageUrl} height="200" alt="Student"/> 
+        <h1>{student.firstName} {student.lastName}</h1>
+        <p>Campus: {student.campusId ? <Link to={`/campus/${student.campusId}`}> {student.campus.name} </Link> : "Student is not currently enrolled" }</p>
+        <p>Email: {student.email}</p>
+        <p>GPA: {student.gpa}</p>
+      </div>
+      ) }
+
+
+      </form>
       
     </div>
   );

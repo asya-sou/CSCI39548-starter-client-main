@@ -51,9 +51,9 @@ const AllStudentsView = (props) => {
             <Button variant="contained" color="primary" style={{marginLeft: '10px'}}>
             HOME
             </Button>
-          </Link> 
-          <Link to={'/campuses'} >
+          </Link>
 
+          <Link to={'/campuses'} >
             <Button variant="contained" color="primary" style={{marginLeft: '10px'}}>
               All Campuses
             </Button>
@@ -80,7 +80,7 @@ const AllStudentsView = (props) => {
       {/* ----------------- ADD STUDENTS FORM ---------------- */} 
       {/* if ADD STUDENT button pressed - shows form below, else shows nothing */}
       {showForm ? (
-        <form onSubmit={() => addNewStudent()}>
+        <form className="addForm" onSubmit={() => addNewStudent()}>
           <div className='row'>
           <label>First Name<strong></strong> </label> 
           <input type="text" value={firstName} onChange={(e) =>setFirstName(e.target.value)} placeholder="Required" name="firstName"/>

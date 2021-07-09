@@ -17,12 +17,11 @@ const AllCampusesView = (props) => {
   var [address, setAddress] = useState ()
   var [description, setDescription] = useState ()
   var [imageUrl, setImageUrl] = useState ()
-  var [students, setStudents] = useState ()
 
   /*dispatch addSTudentsThunk based on form input
   that was initially passed as page state*/
   function addNewCampus(){
-    const newCampus = {name, address, description, imageUrl, students}
+    const newCampus = {name, address, description, imageUrl}
     addCampus(newCampus)
   }
 
@@ -80,7 +79,7 @@ const AllCampusesView = (props) => {
 {/* ----------------- ADD STUDENTS FORM ---------------- */} 
       {/* if ADD STUDENT button pressed - shows form below, else shows nothing */}
       {showForm ? (
-        <form onSubmit={() => addNewCampus()}>
+        <form className="addForm" onSubmit={() => addNewCampus()}>
           <div className='row'>
           <label>Name<strong></strong> </label> 
           <input type="text" value={name} onChange={(e) =>setName(e.target.value)} placeholder="Required" name="name"/>

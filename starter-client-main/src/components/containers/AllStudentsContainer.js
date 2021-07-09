@@ -31,6 +31,7 @@ class AllStudentsContainer extends Component {
       <AllStudentsView
         allStudents={this.props.allStudents}
         deleteStudent={this.props.deleteStudent}
+        addStudent={this.props.addStudent}
       />
     );
   }
@@ -49,6 +50,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
     deleteStudent: (studentId) => dispatch(deleteStudentThunk(studentId)),
+    addStudent: (student) => dispatch(addStudentThunk(student)),
   };
 };
 
