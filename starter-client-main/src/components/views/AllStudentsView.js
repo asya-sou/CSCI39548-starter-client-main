@@ -116,7 +116,7 @@ const AllStudentsView = (props) => {
             <tr key={student.id}>
 
               <td>
-                <Link to={`/student/${student.id}`}>
+                <Link to={`/students/${student.id}`}>
                   <h1>{student.lastName}, {student.firstName}</h1>
                 </Link> 
               </td>
