@@ -4,11 +4,13 @@ import { Button } from "@material-ui/core";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from 'react-router-dom'
+
 import { Redirect } from 'react-router';
+
 const StudentView = (props) => {
-  var {student, editStudent, redirectPage /* handleChange, handleSubmit */} = props;
+  var {student, editStudent, redirectPageProp /* handleChange, handleSubmit */} = props;
   var [showEdit, setShowEdit] = useState (false)
-  var [yellow, setYellow] = useState(false)
 
 /*ADD STUDENTS FORM STATE DEFINITIONS*/
    var [id] = useState(student.id) 
@@ -25,9 +27,10 @@ const StudentView = (props) => {
   async function updateStudent(e){
     e.preventDefault()
     const updatedStudent = {id, firstName, lastName, email, imageUrl, gpa, campusId}
-    await editStudent(updatedStudent) 
-    /* this.redirectPageProp(true) */
-    this.setState({redirect: true})
+    let wait = await editStudent(updatedStudent) 
+    
+    redirectPageProp()
+    /* this.setState({redirect: true}) */
      
 /*     this.setNewRender()
  */

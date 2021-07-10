@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
 import { fetchStudentThunk } from "../../store/thunks";
 import { editStudentThunk } from "../../store/thunks";
@@ -20,16 +18,16 @@ class StudentContainer extends Component {
       redirect:false,
       /* redirectId:null */
     }
-  this.redirectPage = this.redirectPage.bind(this);
-   };  
+/*   this.redirectPage = this.redirectPage.bind(this);
+ */   };  
  
 /*   componentWillUnmount() {
     this.setState({redirect: false, redirectId: null});
 } */
 
-redirectPage = (value) =>  {
+redirectPage = () =>  {
   /* this.setState({redirect: !this.redirect}); */
-this.setState({redirect: value})
+<Redirect to={`/student/${this.props.student.id}/ad`}/>
 }
 /* componentWillReceiveProps(newprops) {
   this.props.fetchStudent(this.props.match.params.id);
@@ -37,7 +35,8 @@ this.setState({redirect: value})
 
 componentDidMount() {
  // getting student ID from url
-  
+ this.redirectPage(false);
+
   this.props.fetchStudent(this.props.match.params.id);
   console.log('^ mount')
 }
@@ -111,12 +110,13 @@ setNewRender() {
   } */
 
   render() {
-   /*  if(this.state.redirect) {
+     /* if(this.state.redirect) {
+      
       console.log('redirect!')
       return (    
-      <Redirect to={`/student/${this.props.student.id}`}/>
+      <Redirect to={`/student/${this.props.student.id}/ad`}/>
       );
-    } */
+    }  */
     return (
       <StudentView 
         student={this.props.student}
