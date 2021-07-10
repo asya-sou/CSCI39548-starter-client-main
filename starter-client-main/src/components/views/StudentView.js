@@ -6,32 +6,32 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Redirect } from 'react-router';
 const StudentView = (props) => {
-  var {student, editStudent, handleChange, handleSubmit} = props;
+  var {student, editStudent, redirectPage /* handleChange, handleSubmit */} = props;
   var [showEdit, setShowEdit] = useState (false)
+  var [yellow, setYellow] = useState(false)
 
-
-  /* /*ADD STUDENTS FORM STATE DEFINITIONS*/
-/*   var [id] = useState(student.id) */
-  /* var [redirectStatus, setRedirectStatus] = useState(false) */
-  /* var [firstName, setFirstName] = useState(student.firstName)
+/*ADD STUDENTS FORM STATE DEFINITIONS*/
+   var [id] = useState(student.id) 
+  /* var [redirectStatus, setRedirectStatus] = useState(false)  */
+  var [firstName, setFirstName] = useState(student.firstName)
   var [lastName, setLastName] = useState(student.lastName)
   var [email, setEmail] = useState(student.email)
   var [imageUrl, setImageUrl] = useState(student.imageUrl)
   var [gpa, setGpa] = useState(student.gpa)
-  var [campusId, setCampusId] = useState(student.campus? student.campus.id : 0) */ 
+  var [campusId, setCampusId] = useState(student.campus? student.campus.id : 0) 
 
   /*dispatch addSTudentsThunk based on form input
   that was initially passed as page state*/
-  /* async function updateStudent(e){
+  async function updateStudent(e){
     e.preventDefault()
     const updatedStudent = {id, firstName, lastName, email, imageUrl, gpa, campusId}
-    editStudent(updatedStudent)
-/*     await editStudent(updatedStudent) 
- */    /*setRedirectStatus(true)*/
-    /* 
-    this.setNewRender()
-
-  } */
+    await editStudent(updatedStudent) 
+    /* this.redirectPageProp(true) */
+    this.setState({redirect: true})
+     
+/*     this.setNewRender()
+ */
+  } 
  
     
   /*if(redirectStatus) {
@@ -89,34 +89,34 @@ const StudentView = (props) => {
 
      
     {showEdit ? (
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => updateStudent(e)}>
       <img src={student.imageUrl} height="200" alt="Student"/>
       <table> <tbody>
         <tr>
         <td><label>Image Url</label></td>
-        <td ><input type="text" defaultValue={student.imageUrl} onChange ={(e) => handleChange(e)} placeholder={student.imageUrl} name="imageUrl"/></td>
+        <td ><input type="text" defaultValue={student.imageUrl} onChange ={(e) => setImageUrl(e.target.value)} placeholder={student.imageUrl} name="imageUrl"/></td>
         </tr>
 
         <tr>
         <td><label>Full Name</label></td>
-        <td><input type="text" defaultValue={student.firstName} onChange ={(e) => handleChange(e)} placeholder={student.firstName} name="firstName"/></td>     
-        <td><input type="text" defaultValue={student.lastName} onChange ={(e) => handleChange(e)} placeholder={student.lastName} name="lastName"/></td>
+        <td><input type="text" defaultValue={student.firstName} onChange ={(e) => setFirstName(e.target.value)} placeholder={student.firstName} name="firstName"/></td>     
+        <td><input type="text" defaultValue={student.lastName} onChange ={(e) => setLastName(e.target.value)} placeholder={student.lastName} name="lastName"/></td>
         </tr>
         
         <tr>
         <td><label>Campus</label></td>
         <td>{student.campusId ? <Link to={`/campus/${student.campusId}`}> {student.campus.name} </Link> : "N/A" }</td>
-        <td><input type="text" defaultValue={student.campusId} onChange ={(e) => handleChange(e)} placeholder={student.campusId} name="campusId"/></td>     
+        <td><input type="text" defaultValue={student.campusId} onChange ={(e) => setCampusId(e.target.value)} placeholder={student.campusId} name="campusId"/></td>     
         </tr>
 
         <tr>
         <td><label>Email</label></td>
-        <td><input type="text" defaultValue={student.email} onChange ={(e) => handleChange(e)} placeholder={student.email} name="imageUrl"/></td>
+        <td><input type="text" defaultValue={student.email} onChange ={(e) => setEmail(e.target.value)} placeholder={student.email} name="imageUrl"/></td>
         </tr>
 
         <tr>
         <td><label>GPA</label></td>
-        <td><input type="number" defaultValue={student.gpa} onChange ={(e) => handleChange(e)} placeholder={student.gpa} name="gpa"/></td>
+        <td><input type="number" defaultValue={student.gpa} onChange ={(e) => setGpa(e.target.value)} placeholder={student.gpa} name="gpa"/></td>
         </tr>
         </tbody></table>
         <button>UPDATE</button>

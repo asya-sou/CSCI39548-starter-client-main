@@ -10,45 +10,69 @@ class StudentContainer extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      id: 0,
+     /*  id: 0,
       firstName: '',
       lastName: '',
       email: '',
       imageUrl: '',
       gpa: 0.0,
-      campusId: 0,
+      campusId: 0, */
       redirect:false,
-      redirectId:null
+      /* redirectId:null */
     }
-  };  
-
+  this.redirectPage = this.redirectPage.bind(this);
+   };  
+ 
 /*   componentWillUnmount() {
     this.setState({redirect: false, redirectId: null});
 } */
+
+redirectPage = (value) =>  {
+  /* this.setState({redirect: !this.redirect}); */
+this.setState({redirect: value})
+}
+/* componentWillReceiveProps(newprops) {
+  this.props.fetchStudent(this.props.match.params.id);
+} */
+
 componentDidMount() {
-  //getting student ID from url
-   this.props.fetchStudent(this.props.match.params.id);
-   this.setState({
+ // getting student ID from url
+  
+  this.props.fetchStudent(this.props.match.params.id);
+  console.log('^ mount')
+}
+ /* componentDidMount() {
+  getting student ID from url
+  
+  this.props.fetchStudent(this.props.match.params.id);
+  
+
+
+this.setState({})
+this.setState({
     id: this.props.id, 
     firstName: this.props.firstName, lastName: this.props.lastName, 
     email: this.props.email, 
-    imageUrl: this.props.imageUrl, gpa: this.props.gpa, campusId: this.props.campusId});
-  console.log('^ mount')
-} 
-/* componentWillUnmount() {
-  this.setState({redirect: false, redirectId: null});
-} */
-handleSubmit = async event => {
-  event.preventDefault();
+    imageUrl: this.props.imageUrl, gpa: this.props.gpa, campusId: this.props.campusId}); 
 
-  let edStudent = {
+  console.log('^ mount')
+}   */
+
+ /* componentWillUnmount() {
+  this.setState({redirect: false});
+  alert('unmount')
+}  */
+/* handleSubmit = async event => {
+  event.preventDefault();
+ */
+  /* let edStudent = {
     id: this.state.id, 
     firstName: this.state.firstName, lastName: this.state.lastName, 
     email: this.state.email, 
     imageUrl: this.props.imageUrl, gpa: this.state.gpa, campusId: this.state.campusId
   };
   
-  let editedStudent = await this.props.editStudent(edStudent);
+  this.propseditStudent(edStudent);
 
   this.setState({
     id: 0,
@@ -65,18 +89,18 @@ handleSubmit = async event => {
 handleChange = event => {
   this.setState({
     [event.target.name]: event.target.value
-  });
-}
+  }); 
+}*/
 /* useEffect() {
   this.props.fetchStudent(this.props.match.params.id);
   console.log('^ effect')
 
 } */
 
-setInfo
+/* setInfo
 setNewRender() {
   this.setState({render: !this.render})
-}
+} */
 /* componentDidUpdate() {
   //getting student ID from url
   this.props.fetchStudent(this.props.match.params.id);
@@ -87,17 +111,21 @@ setNewRender() {
   } */
 
   render() {
-    if(this.state.redirect) {
-      return (<Redirect to={`/student/${this.state.redirectId}`}/>)
-    }
+   /*  if(this.state.redirect) {
+      console.log('redirect!')
+      return (    
+      <Redirect to={`/student/${this.props.student.id}`}/>
+      );
+    } */
     return (
       <StudentView 
         student={this.props.student}
         editStudent={this.props.editStudent}
-        setNewRender={this.setNewRender}
-        handleChange = {this.handleChange} 
-          handleSubmit={this.handleSubmit}     
-        /*setRedirect={this.setRedirect}
+        redirectPageProp={this.redirectPage}
+        /* handleChange = {this.handleChange}
+        setNewRender={this.setNewRender} 
+        handleSubmit={this.handleSubmit}     
+        setRedirect={this.setRedirect}
         setRedirectId={this.setRedirectId}*/
       />
     );
