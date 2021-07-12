@@ -4,17 +4,15 @@ import { Button } from "@material-ui/core";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { Redirect } from 'react-router';
 import { useHistory } from 'react-router';
 
 const StudentView = (props) => {
   const history = useHistory()
-  var {student, editStudent, redirectPage /* handleChange, handleSubmit */} = props;
+  var {student, editStudent} = props;
   var [showEdit, setShowEdit] = useState (false)
 
-/*ADD STUDENTS FORM STATE DEFINITIONS*/
+/*EDIT STUDENT FORM STATE DEFINITIONS*/
    var [id] = useState(student.id) 
-  /* var [redirectStatus, setRedirectStatus] = useState(false)  */
   var [firstName, setFirstName] = useState(student.firstName)
   var [lastName, setLastName] = useState(student.lastName)
   var [email, setEmail] = useState(student.email)
@@ -22,28 +20,18 @@ const StudentView = (props) => {
   var [gpa, setGpa] = useState(student.gpa)
   var [campusId, setCampusId] = useState(student.campus? student.campus.id : 0) 
 
-  /*dispatch addSTudentsThunk based on form input
+  /*dispatch editStudent based on form input
   that was initially passed as page state*/
   async function updateStudent(e){
     e.preventDefault()
     const updatedStudent = {id, firstName, lastName, email, imageUrl, gpa, campusId}
     await editStudent(updatedStudent) 
-    /* this.redirectPageProp(true) */
-/*     this.setState({redirect: true})
- */     
-/*     this.setNewRender()
- */
+
     history.push(`${student.id}/ad`)
   } 
  
     
-  /*if(redirectStatus) {
-    return (
-      alert('redirect!'),
-    <Redirect to={`/student/${id}`}/>),
-    setRedirectStatus(false)
-  } */
-
+  
   return (
     <div className="root">
     {/* ----------------- NAV BAR ---------------- */} 
@@ -90,7 +78,9 @@ const StudentView = (props) => {
       </Toolbar>
     </AppBar>
 
-     
+{/* ----------------- BODY ---------------- */} 
+{/* ----------------- show edit form OR body ---------------- */} 
+  <div clssName = "margin">
     {showEdit ? (
       <form onSubmit={(e) => updateStudent(e)}>
       <img src={student.imageUrl} height="200" alt="Student"/>
@@ -102,8 +92,8 @@ const StudentView = (props) => {
 
         <tr>
         <td><label>Full Name</label></td>
-        <td><input type="text" defaultValue={student.firstName} onChange ={(e) => setFirstName(e.target.value)} placeholder={student.firstName} name="firstName"/></td>     
-        <td><input type="text" defaultValue={student.lastName} onChange ={(e) => setLastName(e.target.value)} placeholder={student.lastName} name="lastName"/></td>
+        <td><input required type="text" defaultValue={student.firstName} onChange ={(e) => setFirstName(e.target.value)} placeholder={student.firstName} name="firstName"/></td>     
+        <td><input required type="text" defaultValue={student.lastName} onChange ={(e) => setLastName(e.target.value)} placeholder={student.lastName} name="lastName"/></td>
         </tr>
         
         <tr>
@@ -114,7 +104,7 @@ const StudentView = (props) => {
 
         <tr>
         <td><label>Email</label></td>
-        <td><input type="text" defaultValue={student.email} onChange ={(e) => setEmail(e.target.value)} placeholder={student.email} name="imageUrl"/></td>
+        <td><input required type="text" defaultValue={student.email} onChange ={(e) => setEmail(e.target.value)} placeholder={student.email} name="imageUrl"/></td>
         </tr>
 
         <tr>
@@ -126,18 +116,18 @@ const StudentView = (props) => {
 
         </form>
     ) : (
+
       <div>
         <img src={student.imageUrl} height="200" alt="Student"/> 
         <h1>{student.firstName} {student.lastName} [#{student.id}]</h1>
-        <p>Campus: {student.campusId ? <Link to={`/campus/${student.campusId}`}> {student.campus.name} </Link> : "Student is not currently enrolled" }</p>
+        <p>Campus: {student.campusId ? <Link to={`/campus/${student.campusId}`}> {student.campus.name} </Link> : "Student is not currently enrolled" } </p>
         <p>Email: {student.email}</p>
         <p>GPA: {student.gpa}</p>
       </div>
-      ) }
-
-
+    ) 
+    } 
       
-      
+    </div>
     </div>
   );
 

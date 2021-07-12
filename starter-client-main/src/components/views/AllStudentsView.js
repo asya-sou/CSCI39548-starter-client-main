@@ -79,15 +79,15 @@ const AllStudentsView = (props) => {
         <form className="addForm" onSubmit={() => addNewStudent()}>
           <div className='row'>
           <label>First Name<strong></strong> </label> 
-          <input type="text" value={firstName} onChange={(e) =>setFirstName(e.target.value)} placeholder="Required" name="firstName"/>
+          <input required type="text" value={firstName} onChange={(e) =>setFirstName(e.target.value)} placeholder="Required" name="firstName"/>
                     
           <label>Last Name</label> 
-          <input type="text" value={lastName} onChange={(e) =>setLastName(e.target.value)} placeholder="Required" name="lastName"/>
+          <input required type="text" value={lastName} onChange={(e) =>setLastName(e.target.value)} placeholder="Required" name="lastName"/>
           </div>
 
           <div className='row'>
           <label>Email</label> 
-          <input type="text" value={email} onChange={(e) =>setEmail(e.target.value)} placeholder="Required" name="email"/>
+          <input required type="text" value={email} onChange={(e) =>setEmail(e.target.value)} placeholder="Required" name="email"/>
 
           <label>Photo URL </label> 
           <input type="text" value={imageUrl} onChange={(e) =>setImageUrl(e.target.value)} placeholder="" name="imageUrl"/>
@@ -116,12 +116,14 @@ const AllStudentsView = (props) => {
             <tr key={student.id}>
 
               <td>
-                <Link to={`/student/${student.id}`}>
-                  <h1>{student.lastName}, {student.firstName}</h1>
-                </Link> 
+                <h1><Link to={`/student/${student.id}`}>
+                  {student.lastName}, {student.firstName} 
+                  </Link> 
+                  [#{student.id}] 
+                </h1>
               </td>
 
-              {/* DELETE STUDENT  */}
+          {/*---------------- DELETE STUDENT------------  */}
               <td>
                   <Button 
                   variant="contained" color="primary"

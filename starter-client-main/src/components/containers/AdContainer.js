@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import AdView from "../views/AdView";
 import { fetchStudentThunk } from "../../store/thunks";
 import { connect } from "react-redux";
-import { Redirect } from "react-router";
 class AdContainer extends Component {
   constructor(props) {
     super(props);
@@ -22,24 +21,10 @@ class AdContainer extends Component {
          const redirectUrl = currentUrl.substr(0,urlLength);
          console.log(redirectUrl);  
 
-/*          console.log(window.location.href);  
- */         
-        let truth = await setTimeout(function() {  }, 1500);
-        /* this.setState({redirect: true}) */
-
-       <Redirect to={`${redirectUrl}`}/>
-        console.log(<Redirect to={`${redirectUrl}`}/>) 
-
        }
 
 
     render() {
-      /*  if (this.state.redirect) {
-        return(
-        <Redirect to={`student/${this.props.match.params.id}`}/>
-        );
-      }  */
-
       return (
         <AdView 
         student={this.props.student}/>

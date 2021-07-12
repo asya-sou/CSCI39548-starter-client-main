@@ -49,7 +49,6 @@ const mapDispatch = (dispatch) => {
 AllCampusesContainer.propTypes = {
   allCampuses: PropTypes.array.isRequired,
   fetchAllCampuses: PropTypes.func.isRequired,
-  /* deleteCampus: PropTypes.func.isRequired, */
 };
 
 // Export our store-connected container by default;
