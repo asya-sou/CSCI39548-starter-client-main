@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
-import {useDispatch} from 'react-redux'
-import { addStudentThunk } from "../../store/thunks";
 import {useState} from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,8 +8,6 @@ import Typography from '@material-ui/core/Typography';
 
 const AllStudentsView = (props) => {
   
-  const dispatch = useDispatch()
-
   /*-------------------ADD STUDENT FORM SET-UP ------------------------ */
   const [showForm, setShowForm] = useState (false)
   
@@ -27,11 +23,11 @@ const AllStudentsView = (props) => {
   that was initially passed as page state*/
   function addNewStudent(){
     const newStudent = {firstName, lastName, email, imageUrl, gpa, campusId}
-    dispatch(addStudentThunk(newStudent))
+    addStudent(newStudent)
   }
   /*------------------- END ADD STUDENT FORM SET-UP ------------------------ */
 
-  const {allStudents, deleteStudent} = props;
+  const {allStudents, deleteStudent, addStudent} = props;
 
     /*if no students - message*/
     if (!allStudents.length) {
@@ -51,9 +47,9 @@ const AllStudentsView = (props) => {
             <Button variant="contained" color="primary" style={{marginLeft: '10px'}}>
             HOME
             </Button>
-          </Link> 
-          <Link to={'/campuses'} >
+          </Link>
 
+          <Link to={'/campuses'} >
             <Button variant="contained" color="primary" style={{marginLeft: '10px'}}>
               All Campuses
             </Button>
@@ -80,7 +76,7 @@ const AllStudentsView = (props) => {
       {/* ----------------- ADD STUDENTS FORM ---------------- */} 
       {/* if ADD STUDENT button pressed - shows form below, else shows nothing */}
       {showForm ? (
-        <form onSubmit={() => addNewStudent()}>
+        <form className="addForm" onSubmit={() => addNewStudent()}>
           <div className='row'>
           <label>First Name<strong></strong> </label> 
           <input type="text" value={firstName} onChange={(e) =>setFirstName(e.target.value)} placeholder="Required" name="firstName"/>

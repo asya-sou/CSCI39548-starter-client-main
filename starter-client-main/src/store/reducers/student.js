@@ -1,10 +1,11 @@
-import { FETCH_STUDENT } from "../actions/actionTypes";
-
-
+import * as at from "../actions/actionTypes";
+const initialState = {
+  campus: {},
+};
 // REDUCER;
 const student = (state={}, action) => {
   switch (action.type) {
-    case FETCH_STUDENT:
+    case at.FETCH_STUDENT:
       return action.payload;
     default:
       return state;
