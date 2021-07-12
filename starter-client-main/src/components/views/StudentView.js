@@ -20,7 +20,7 @@ const StudentView = (props) => {
   var [gpa, setGpa] = useState(student.gpa)
   var [campusId, setCampusId] = useState(student.campus? student.campus.id : 0) 
 
-  /*dispatch editCampus based on form input
+  /*dispatch editStudent based on form input
   that was initially passed as page state*/
   async function updateStudent(e){
     e.preventDefault()
@@ -92,8 +92,8 @@ const StudentView = (props) => {
 
         <tr>
         <td><label>Full Name</label></td>
-        <td><input type="text" defaultValue={student.firstName} onChange ={(e) => setFirstName(e.target.value)} placeholder={student.firstName} name="firstName"/></td>     
-        <td><input type="text" defaultValue={student.lastName} onChange ={(e) => setLastName(e.target.value)} placeholder={student.lastName} name="lastName"/></td>
+        <td><input required type="text" defaultValue={student.firstName} onChange ={(e) => setFirstName(e.target.value)} placeholder={student.firstName} name="firstName"/></td>     
+        <td><input required type="text" defaultValue={student.lastName} onChange ={(e) => setLastName(e.target.value)} placeholder={student.lastName} name="lastName"/></td>
         </tr>
         
         <tr>
@@ -104,7 +104,7 @@ const StudentView = (props) => {
 
         <tr>
         <td><label>Email</label></td>
-        <td><input type="text" defaultValue={student.email} onChange ={(e) => setEmail(e.target.value)} placeholder={student.email} name="imageUrl"/></td>
+        <td><input required type="text" defaultValue={student.email} onChange ={(e) => setEmail(e.target.value)} placeholder={student.email} name="imageUrl"/></td>
         </tr>
 
         <tr>

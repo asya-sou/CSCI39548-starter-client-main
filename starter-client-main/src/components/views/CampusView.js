@@ -88,12 +88,12 @@ const CampusView = (props) => {
 
         <tr>
         <td><label> Name</label></td>
-        <td><input type="text" defaultValue={campus.name} onChange ={(e) => setName(e.target.value)} placeholder={campus.name} name="campusName"/></td>     
+        <td><input required type="text" defaultValue={campus.name} onChange ={(e) => setName(e.target.value)} placeholder={campus.name} name="campusName"/></td>     
         </tr>
 
         <tr>
         <td><label>Address</label></td>
-        <td><input type="text" defaultValue={campus.address} onChange ={(e) => setAddress(e.target.value)} placeholder={campus.address} name="campuAddress"/></td>
+        <td><input required type="text" defaultValue={campus.address} onChange ={(e) => setAddress(e.target.value)} placeholder={campus.address} name="campuAddress"/></td>
         </tr>
 
         <tr>

@@ -5,9 +5,7 @@ import {useState} from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
 const AllCampusesView = (props) => {
-
   /*-------------------ADD CAMPUS FORM SET-UP ------------------------ */
   const [showForm, setShowForm] = useState (false)
   
@@ -77,26 +75,19 @@ const AllCampusesView = (props) => {
         <form className="addForm" onSubmit={() => addNewCampus()}>
           <div className='row'>
           <label>Name<strong></strong> </label> 
-          <input type="text" value={name} onChange={(e) =>setName(e.target.value)} placeholder="Required" name="name"/>
+          <input required type="text" defaultValue={name} onChange={(e) =>setName(e.target.value)} placeholder="Required" name="name"/>
                     
           <label>Address</label> 
-          <input type="text" value={address} onChange={(e) =>setAddress(e.target.value)} placeholder="Required" name="address"/>
+          <input required type="text" defaultValue={address} onChange={(e) =>setAddress(e.target.value)} placeholder="Required" name="address"/>
           </div>
 
           <div className='row'>
           <label>Description</label> 
-          <input type="text" value={description} onChange={(e) =>setDescription(e.target.value)} placeholder="" name="description"/>
+          <input type="text" defaultValue={description} onChange={(e) =>setDescription(e.target.value)} placeholder="" name="description"/>
 
           <label>Photo URL </label> 
-          <input type="text" value={imageUrl} onChange={(e) =>setImageUrl(e.target.value)} placeholder="" name="imageUrl"/>
+          <input type="text" defaultValue={imageUrl} onChange={(e) =>setImageUrl(e.target.value)} placeholder="" name="imageUrl"/>
           </div>
-
-         {/*  <div className='row'>
-          <p></p><p></p>
-          <label> Students </label> 
-          <input type="text" value={students} onChange={(e) => setStudents(...,e.target.value)} placeholder="" name="students"/> 
-            </div> */}
-
         
           {/* for some reason nothing but adding empty cells aids in aligning this button right, cannot merge cells*/}
           <p></p><p></p><p></p> 
