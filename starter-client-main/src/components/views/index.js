@@ -4,4 +4,6 @@ export { default as AllStudentsView } from "./AllStudentsView";
 export { default as CampusView } from "./CampusView";
 export { default as StudentView } from "./StudentView";
 export { default as HomePageView } from "./HomePageView";
-export {default as AdView} from "./AdView";
+export { default as AdView} from "./AdView";
+export { default as CampusAdView} from "./CampusAdView";
+

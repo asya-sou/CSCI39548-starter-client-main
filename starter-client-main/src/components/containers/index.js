@@ -5,3 +5,4 @@ export { default as CampusContainer } from "./CampusContainer";
 export { default as AllStudentsContainer } from "./AllStudentsContainer";
 export { default as StudentContainer } from "./StudentContainer";
 export { default as AdContainer } from "./AdContainer";
+export { default as CampusAdContainer } from "./CampusAdContainer";

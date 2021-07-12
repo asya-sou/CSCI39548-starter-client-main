@@ -14,7 +14,7 @@ class CampusContainer extends Component {
     return (
       <CampusView 
         campus={this.props.campus}
-        editCampus={this.props.campus}
+        editCampus={this.props.editCampus}
       />
     );
   }
