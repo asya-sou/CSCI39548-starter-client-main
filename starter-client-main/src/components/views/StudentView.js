@@ -80,7 +80,7 @@ const StudentView = (props) => {
 
 {/* ----------------- BODY ---------------- */} 
 {/* ----------------- show edit form OR body ---------------- */} 
-
+  <div clssName = "margin">
     {showEdit ? (
       <form onSubmit={(e) => updateStudent(e)}>
       <img src={student.imageUrl} height="200" alt="Student"/>
@@ -127,6 +127,7 @@ const StudentView = (props) => {
     ) 
     } 
       
+    </div>
     </div>
   );
 

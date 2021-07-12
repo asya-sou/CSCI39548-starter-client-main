@@ -77,7 +77,7 @@ const CampusView = (props) => {
 {/* ----------------- BODY ---------------- */} 
 {/* ----------------- show edit form OR body ---------------- */}       
   {showEdit ? (
-      <div>
+      <div className="margin">
       <form onSubmit={(e) => updateCampus(e)}>
       <img src={campus.imageUrl} height="200" alt="Campus"/>
       <table> <tbody>
