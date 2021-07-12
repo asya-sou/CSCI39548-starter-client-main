@@ -1,34 +1,34 @@
 import React, { Component } from "react";
-import AdView from "../views/AdView";
-import { fetchStudentThunk } from "../../store/thunks";
+import CampusAdView from "../views/CampusAdView";
+import { fetchCampusThunk } from "../../store/thunks";
 import { connect } from "react-redux";
-import { Redirect } from "react-router";
-class AdContainer extends Component {
-  constructor(props) {
+
+class CampusAdContainer extends Component {
+/*   constructor(props) {
     super(props);
     this.state = {
       redirect:false,
     }
-   };  
+   };   */
 
   async componentDidMount() {
-        this.props.fetchStudent(this.props.match.params.id);
+        this.props.fetchCampus(this.props.match.params.id);
 
         // getting student ID from url       
-         console.log('your ad!')
+        /*  console.log('your ad!')
          var currentUrl = window.location.pathname;
          var urlLength = currentUrl.length - 3;
 
          const redirectUrl = currentUrl.substr(0,urlLength);
          console.log(redirectUrl);  
 
-/*          console.log(window.location.href);  
- */         
+        console.log(window.location.href);  
+       
         let truth = await setTimeout(function() {  }, 1500);
-        /* this.setState({redirect: true}) */
+         this.setState({redirect: true}) 
 
        <Redirect to={`${redirectUrl}`}/>
-        console.log(<Redirect to={`${redirectUrl}`}/>) 
+        console.log(<Redirect to={`${redirectUrl}`}/>)  */
 
        }
 
@@ -41,25 +41,23 @@ class AdContainer extends Component {
       }  */
 
       return (
-        <AdView 
-        student={this.props.student}/>
+        <CampusAdView 
+        campus={this.props.campus}/>
       );
    } 
 };
 
 const mapDispatch = (dispatch) => {
     return {
-      fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
+      fetchCampus: (id) => dispatch(fetchCampusThunk(id)),
     };
   };
 
 const mapState = (state) => {
     return {
-      student: state.student,
+      campus: state.campus,
     };
     
   };
   
-  
-
-export default connect(mapState, mapDispatch)(AdContainer);
+export default connect(mapState, mapDispatch)(CampusAdContainer);
