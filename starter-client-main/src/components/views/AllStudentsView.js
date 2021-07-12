@@ -116,12 +116,14 @@ const AllStudentsView = (props) => {
             <tr key={student.id}>
 
               <td>
-                <Link to={`/student/${student.id}`}>
-                  <h1>{student.lastName}, {student.firstName}</h1>
-                </Link> 
+                <h1><Link to={`/student/${student.id}`}>
+                  {student.lastName}, {student.firstName} 
+                  </Link> 
+                  [#{student.id}] 
+                </h1>
               </td>
 
-              {/* DELETE STUDENT  */}
+          {/*---------------- DELETE STUDENT------------  */}
               <td>
                   <Button 
                   variant="contained" color="primary"

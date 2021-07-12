@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import {useDispatch} from 'react-redux'
 import {useState} from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -32,10 +31,6 @@ const AllCampusesView = (props) => {
   if (!allCampuses.length) {
     return <div>There are no campuses.</div>;
   }
-/* const handleDelete = (e) => {
-   this.props.deleteCamp(e);
-  } */
-
 
   return (
     <div className="root">
@@ -119,8 +114,12 @@ const AllCampusesView = (props) => {
         <tr key={campus.id}>
             <td><img src={campus.imageUrl} width="150" alt="Campus"/></td>
             
-            <td><Link to={`/campus/${campus.id}`}> <h1>{campus.name}</h1>  </Link> 
-            <p>Campus ID: {campus.id}</p>
+            <td>
+            <h1><Link to={`/campus/${campus.id}`}>
+                        {campus.name} 
+                    </Link> 
+                [#{campus.id}] 
+            </h1>  
             </td>
             
         {/* DELETE CAMPUS  */}

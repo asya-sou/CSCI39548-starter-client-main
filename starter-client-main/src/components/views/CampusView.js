@@ -10,7 +10,7 @@ const CampusView = (props) => {
   const {campus, editCampus} = props;
   const [showEdit, setShowEdit] = useState (false)
 
-
+/*EDIT CAMPUS FORM STATE DEFINITIONS*/
   var [id] = useState(campus.id)
   var [imageUrl, setImageUrl] = useState(campus.imageUrl)
   var [name, setName] = useState(campus.name)
@@ -18,17 +18,16 @@ const CampusView = (props) => {
   var [description, setDescription] = useState(campus.description)
   var [students, setStudents] = useState(campus.students)
   
+  //dispatch editStudent
   async function updateCampus(e){
     e.preventDefault()
+
     const updateCampus = {id, name, imageUrl, address, description, students}
     await editCampus(updateCampus) 
-    /* this.redirectPageProp(true) */
-/*     this.setState({redirect: true})
- */     
-/*     this.setNewRender()
- */
+  
     history.push(`${campus.id}/ad`)
   } 
+
   return (
     <div className="root">
     {/* ----------------- NAV BAR ---------------- */} 
@@ -75,8 +74,8 @@ const CampusView = (props) => {
       </Toolbar>
     </AppBar>
 
-  {/* --------------------------------- CAMPUS INFO --------------------------------------------- */}
-      
+{/* ----------------- BODY ---------------- */} 
+{/* ----------------- show edit form OR body ---------------- */}       
   {showEdit ? (
       <div>
       <form onSubmit={(e) => updateCampus(e)}>
@@ -93,6 +92,11 @@ const CampusView = (props) => {
         </tr>
 
         <tr>
+        <td><label>Address</label></td>
+        <td><input type="text" defaultValue={campus.address} onChange ={(e) => setAddress(e.target.value)} placeholder={campus.address} name="campuAddress"/></td>
+        </tr>
+
+        <tr>
         <td><label>Description</label></td>
         <td><input type="text" defaultValue={campus.description} onChange ={(e) => setDescription(e.target.value)} placeholder={campus.description} name="campusDescription"/></td>
         </tr>
@@ -106,7 +110,10 @@ const CampusView = (props) => {
 
         </form>
         </div>
+
+
     ) : (
+      
       <div>
       <img src={campus.imageUrl} width="200" alt="Campus"/>      
       <h1>{campus.name}</h1>
