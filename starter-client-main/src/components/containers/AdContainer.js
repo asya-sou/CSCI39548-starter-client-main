@@ -12,33 +12,37 @@ class AdContainer extends Component {
     }
    };  
   async componentDidMount() {
+        this.props.fetchStudent(this.props.match.params.id);
+
         // getting student ID from url       
          console.log('your ad!')
          var currentUrl = window.location.pathname;
          var urlLength = currentUrl.length - 3;
 
-         var redirectUrl = currentUrl.substr(0,urlLength);
+         const redirectUrl = currentUrl.substr(0,urlLength);
          console.log(redirectUrl);  
 
 /*          console.log(window.location.href);  
  */         
-        let truth = await setTimeout(function(){ }, 3000);
+        let truth = await setTimeout(function() {  }, 1500);
         /* this.setState({redirect: true}) */
 
-        <Redirect to={redirectUrl}/>
-        console.log(truth)
+       <Redirect to={`${redirectUrl}`}/>
+        console.log(<Redirect to={`${redirectUrl}`}/>) 
 
        }
 
 
     render() {
-     /*  if (this.state.redirect) {
+      /*  if (this.state.redirect) {
         return(
-        <Redirect to={redirectUrl}/>
+        <Redirect to={`student/${this.props.match.params.id}`}/>
         );
-      } */
+      }  */
+
       return (
-        <AdView student={this.props.student}/>
+        <AdView 
+        student={this.props.student}/>
       );
    } 
 };
@@ -53,7 +57,9 @@ const mapState = (state) => {
     return {
       student: state.student,
     };
+    
   };
+  
   
 
 export default connect(mapState, mapDispatch)(AdContainer);
