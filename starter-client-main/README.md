@@ -51,7 +51,7 @@ Requirements:
 **Removing a Campus and Removing a Student
 **
 (React and Axios/Fetch)
-- [X]] In the all-campuses view, include an `X` button next to each campus
+- [X] In the all-campuses view, include an `X` button next to each campus
 - [X] Clicking the `X` button should:
   - [X] Make an AJAX request that causes that campus to be removed from database
   - [X] Remove the campus from the list of campuses without needing to refresh the page
