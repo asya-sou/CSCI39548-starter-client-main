@@ -6,8 +6,9 @@ const AdView = (props) => {
     var {student} = props;
     return (
         <div>
-        <p> {student.firstName} {student.lastName} [#{student.id}] is updated!</p>
-        
+        <h1> {student.firstName} {student.lastName} [#{student.id}] </h1>
+        <p>is updated!</p>
+
         {history.push(`/student/${student.id}`)}
         </div>
     );
