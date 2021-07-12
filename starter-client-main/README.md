@@ -9,7 +9,7 @@ Requirements:
 
 **All Campuses and Students**
 (React-Redux, React, and React Router)
-- [x ] Write a campuses sub-reducer to manage campuses in your Redux store
+- [X] Write a campuses sub-reducer to manage campuses in your Redux store
 - [ x] Write a students sub-reducer to manage students in your Redux store
 - [ x] Write a component to display a list of all campuses (just their names and images)
 - [ x] Write a component to display a list of all students (just their names)
